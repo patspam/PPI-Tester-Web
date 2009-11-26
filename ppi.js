@@ -27,7 +27,7 @@ PPI.app = function() {
 	
 	// Set config defaults
 	that.cfg = {
-		href: 'ppi.pl',
+		href: 'ppi.cgi',
 		throttle_interval: 150 // time interval between ajax requests
 	};
 	
@@ -38,7 +38,6 @@ PPI.app = function() {
 		// Store some handy reference to out input/reponse elemenets..
     	ppi_input = document.getElementById('ppi-input');
 		ppi_response = document.getElementById('ppi-response');
-		console.log(ppi_response, 'ok');
 		
         // Wrap our textarea element in a pretty YUI Panel
         var ppi_input_panel = new YAHOO.widget.Panel('ppi-input-panel', {
@@ -107,4 +106,4 @@ PPI.app = function() {
 	return that;
 }(); //singleton
 
-YAHOO.util.Event.onDOMReady(PPI.app.init_page, {href: 'a.pl'});
+YAHOO.util.Event.onDOMReady(PPI.app.init_page);

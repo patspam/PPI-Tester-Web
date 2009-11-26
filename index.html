@@ -25,6 +25,12 @@
 					<a href="http://wxperl.sourceforge.net/">wxPerl</a> app he wrote to stay one step ahead of Damian Conway during mind-bending YAPC keynotes
 					(<a href="http://search.cpan.org/dist/PPI-Tester/">PPI::Tester</a>). For fun, I decided to make a web-based version.
 				</p>
+				<p>
+                    You can use this as a web service by sending a request to <strong>ppi.cgi</strong> with your perl code in the <em>src</em> query param, e.g. <em>ppi.cgi?src=print%20%22Hello,%20World!%22</em>
+                </p>
+                <p>
+                    Full source code available on <a href="http://github.com/pdonelan/PPI-Tester-Web">GitHub</a>
+                </p>
             </div>
             <div id="bd">
                 <div class="yui-g">
@@ -35,9 +41,7 @@
                             </div>
                             <div class="bd">
                                 <div id="ppi-input-resize">
-<textarea id="ppi-input">unless (&lt;=&gt; &lt;=&gt; &lt;=&gt;) {
-	print "helo, world!";
-}</textarea>
+                                    <textarea id="ppi-input">print "Hello, world!";</textarea>
                                 </div>
                             </div>
                         </div>
