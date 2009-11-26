@@ -6,9 +6,7 @@ use warnings;
 use lib '/home/patspam/perl5/lib/perl5';
 use PPI::Lexer  ();
 use PPI::Dumper ();
-
 use CGI::Simple;
-use HTML::Strip;
 
 my $q = new CGI::Simple;
 print $q->header();
