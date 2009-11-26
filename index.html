@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>Ajax PPI Tester</title>
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/reset-fonts-grids/reset-fonts-grids.css">
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/base/base-min.css">
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/container/assets/skins/sam/container.css">
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/resize/assets/skins/sam/resize.css">
+		<link rel="stylesheet" type="text/css" href="ppi.css">
+		<script type="text/javascript" src="http://yui.yahooapis.com/combo?2.5.2/build/yahoo-dom-event/yahoo-dom-event.js&2.5.2/build/connection/connection-min.js&2.5.2/build/dragdrop/dragdrop-min.js&2.5.2/build/container/container-min.js&2.5.2/build/element/element-beta-min.js&2.5.2/build/resize/resize-beta-min.js"></script>
+		<script type="text/javascript" src="ppi.js"></script>
+    </head>
+    <body class="yui-skin-sam">
+        <div id="doc3" class="yui-t6">
+            <div id="hd">
+                <H1>PPI::Tester - the Ajax version</H1>
+				<H3>
+					On-the-fly lexing/dumping of Perl source code using Adam Kennedy's
+					<a href="http://search.cpan.org/dist/PPI/">PPI</a> module
+				</H3>
+				<p>
+					During the <a href="http://padre.perlide.org/">Padre hackathon</a> at 
+					<a href="http://www.yapceurope2008.org">YAPC::Europe 2008</a> Adam showed me the 
+					<a href="http://wxperl.sourceforge.net/">wxPerl</a> app he wrote to stay one step ahead of Damian Conway during mind-bending YAPC keynotes
+					(<a href="http://search.cpan.org/dist/PPI-Tester/">PPI::Tester</a>)
+				</p>
+				<p>
+					For fun, I decided to make a web-based version.
+				</p>
+            </div>
+            <div id="bd">
+                <div class="yui-g">
+                    <div class="yui-u first">
+                        <div id="ppi-input-panel">
+                            <div class="hd">
+                                Type your Perl source here:
+                            </div>
+                            <div class="bd">
+                                <div id="ppi-input-resize">
+                                    <textarea id="ppi-input">print "hello, world.";</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="yui-u">
+                        <div id="ppi-response-panel">
+                            <div class="hd">
+                                <a href="http://search.cpan.org/dist/PPI/">PPI</a> dumps this as:
+                            </div>
+                            <div class="bd">
+                                <div id="ppi-response">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ft">
+                <H4>
+                   Patrick Donelan (<a href="http://patspam.com">patspam.com</a>)
+                </H4>
+            </div>
+        </div>
+    </body>
+</html>

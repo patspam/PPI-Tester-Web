@@ -1,0 +1,19 @@
+textarea {
+	width: 99%;
+}
+
+#ppi-input {
+	height: 200px;
+}
+
+#ppi-input-panel_c, #ppi-response-panel_c {
+	position: relative;
+}
+
+#ppi-input-resize {
+	padding-bottom: 5px;
+}
+
+#ft {
+	padding-top: 10px;
+}
