@@ -1,16 +1,44 @@
 /*global PPI, YAHOO */
-PPI = new function(){
-    var HREF = 'ppi.cgi';
-    var throttled_process_id = 0;
-	var THROTTLE_INTERVAL = 150; // time interval between ajax requests
-    
+
+// Create namespace
+var PPI = {};
+
+// Create app..
+PPI.app = function() {
+	// Private objects..
+	var throttled_process_id = 0, ppi_input, ppi_response;
+	
+	/**
+	 * Handle keyup event on our textarea elem
+	 * 
+	 * We do ajax calls to PPI every throttle_interval microseconds
+	 */ 
+    var on_keyup = function(){
+		// Clear any pending calls that haven't run yet
+        clearTimeout(throttled_process_id);
+				
+		// Send a request to the server in throttle_interval microseconds
+		// (unless another keyup event happens before then)
+		throttled_process_id = setTimeout(that.send_request, that.cfg.throttle_interval);
+    };
+	
+	// Public object
+	var that = {};
+	
+	// Set config defaults
+	that.cfg = {
+		href: 'ppi.pl',
+		throttle_interval: 150 // time interval between ajax requests
+	};
+	
     /***
      * Initialise the controls on the page, subscribe to events etc..
      */
-    this.init = function(){
+    that.init_page = function(){
 		// Store some handy reference to out input/reponse elemenets..
-    	this.ppi_input = document.getElementById('ppi-input');
-		this.ppi_response = document.getElementById('ppi-response');
+    	ppi_input = document.getElementById('ppi-input');
+		ppi_response = document.getElementById('ppi-response');
+		console.log(ppi_response, 'ok');
 		
         // Wrap our textarea element in a pretty YUI Panel
         var ppi_input_panel = new YAHOO.widget.Panel('ppi-input-panel', {
@@ -29,55 +57,44 @@ PPI = new function(){
         ppi_response_panel.render();
         
         // Subscribe to keyup events on our textarea element
-        YAHOO.util.Event.addListener('ppi-input-panel', 'keyup', this.on_keyup, null, this);
+        YAHOO.util.Event.addListener('ppi-input-panel', 'keyup', on_keyup);
 		
 		// Add some simple resize handles to the textarea elem
-		var resize = new YAHOO.util.Resize('ppi-input-resize', {
+		var ppi_input_resize = new YAHOO.util.Resize('ppi-input-resize', {
 			handles: ['b']
 		});
-		var ppi_input = this.ppi_input;
-        resize.on('resize', function(ev) {
+        ppi_input_resize.on('resize', function(ev) {
             var w = ev.width;
             var h = ev.height;
             ppi_input.style.height = (h - 5) + "px";
         });
 		
+		// And do the same for the response div
+		var ppi_response_resize = new YAHOO.util.Resize('ppi-response-resize', {
+			handles: ['b']
+		});
+        ppi_response_resize.on('resize', function(ev) {
+            var w = ev.width;
+            var h = ev.height;
+            ppi_response.style.height = (h - 5) + "px";
+        });
+		
 		// If the page was loaded with data, fake a keyup evevnt
 		if (ppi_input.value && ppi_input.value.length > 0) {
-			this.on_keyup();
+			on_keyup();
 		}
-    };
-    
-	/**
-	 * Handle keyup event on our textarea elem
-	 * 
-	 * We do ajax calls to PPI every THROTTLE_INTERVAL microseconds
-	 */ 
-    this.on_keyup = function(){
-		// Clear any pending calls that haven't run yet
-        clearTimeout(throttled_process_id);
-		
-		// Grab a reference to 'this' for our closure below..
-        var t = this;
-		
-		// Send a request to the server in THROTTLE_INTERVAL microseconds
-		// (unless another keyup event happens before then)
-        throttled_process_id = setTimeout(function(){
-            t.send_request();
-        }, THROTTLE_INTERVAL);
     };
     
 	/**
 	 * Send the plaintext string in our textarea elem to the server and
 	 * handle the response
 	 */
-    this.send_request = function(){
+    that.send_request = function(){
 		// URI-encode the plaintext string in our textarea elem
-        var uri_encoded_data = encodeURIComponent(this.ppi_input.value);
-		var ppi_response = this.ppi_response;
+        var uri_encoded_data = encodeURIComponent(ppi_input.value);
 		
 		// Do the HTTP request (via POST so that we can handle large input)
-        YAHOO.util.Connect.asyncRequest('POST', HREF, {
+        YAHOO.util.Connect.asyncRequest('POST', that.cfg.href, {
             success: function(o){
                 ppi_response.innerHTML = o.responseText;
             },
@@ -86,5 +103,8 @@ PPI = new function(){
             }
         }, 'src=' + uri_encoded_data);
     };
-}();
-YAHOO.util.Event.onDOMReady(PPI.init, null, PPI);
+	
+	return that;
+}(); //singleton
+
+YAHOO.util.Event.onDOMReady(PPI.app.init_page, {href: 'a.pl'});

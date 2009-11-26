@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Ajax PPI Tester</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/reset-fonts-grids/reset-fonts-grids.css">
 		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/base/base-min.css">
 		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.5.2/build/container/assets/skins/sam/container.css">
@@ -14,18 +15,15 @@
         <div id="doc3" class="yui-t6">
             <div id="hd">
                 <H1>PPI::Tester - the Ajax version</H1>
-				<H3>
+				<p class="description">
 					On-the-fly lexing/dumping of Perl source code using Adam Kennedy's
 					<a href="http://search.cpan.org/dist/PPI/">PPI</a> module
-				</H3>
+				</p>
 				<p>
 					During the <a href="http://padre.perlide.org/">Padre hackathon</a> at 
 					<a href="http://www.yapceurope2008.org">YAPC::Europe 2008</a> Adam showed me the 
 					<a href="http://wxperl.sourceforge.net/">wxPerl</a> app he wrote to stay one step ahead of Damian Conway during mind-bending YAPC keynotes
-					(<a href="http://search.cpan.org/dist/PPI-Tester/">PPI::Tester</a>)
-				</p>
-				<p>
-					For fun, I decided to make a web-based version.
+					(<a href="http://search.cpan.org/dist/PPI-Tester/">PPI::Tester</a>). For fun, I decided to make a web-based version.
 				</p>
             </div>
             <div id="bd">
@@ -33,11 +31,13 @@
                     <div class="yui-u first">
                         <div id="ppi-input-panel">
                             <div class="hd">
-                                Type your Perl source here:
+                                Your Perl code here:
                             </div>
                             <div class="bd">
                                 <div id="ppi-input-resize">
-                                    <textarea id="ppi-input">print "hello, world.";</textarea>
+<textarea id="ppi-input">unless (&lt;=&gt; &lt;=&gt; &lt;=&gt;) {
+	print "helo, world!";
+}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -45,11 +45,12 @@
                     <div class="yui-u">
                         <div id="ppi-response-panel">
                             <div class="hd">
-                                <a href="http://search.cpan.org/dist/PPI/">PPI</a> dumps this as:
+                                <a href="http://search.cpan.org/dist/PPI/">PPI</a> says:
                             </div>
                             <div class="bd">
-                                <div id="ppi-response">
-                                </div>
+                            	<div id="ppi-response-resize">
+	                                <div id="ppi-response"></div>
+								</div>
                             </div>
                         </div>
                     </div>

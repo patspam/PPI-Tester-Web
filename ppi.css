@@ -1,19 +1,54 @@
+H1, H2, H3 {
+	color:#679000;
+	margin: 0.5em 0;
+} 
+
+a:hover, a:active {
+	color: #679000;
+}
+a:visited {
+	color: #999999;
+}
+.description {
+	background: #FFF;
+	padding: 5px;
+	border: 1px dotted #5CA605;
+}
+
 textarea {
 	width: 99%;
 }
 
 #ppi-input {
-	height: 200px;
+	height: 300px;
+}
+
+#ppi-response {
+	height: 307px;
+	overflow: auto;
 }
 
 #ppi-input-panel_c, #ppi-response-panel_c {
 	position: relative;
 }
 
-#ppi-input-resize {
+#ppi-input-resize, #ppi-response-resize {
 	padding-bottom: 5px;
 }
 
-#ft {
-	padding-top: 10px;
+#hd, #ft {
+	background:#EFEFEF none repeat scroll 0 0;
+	padding:10px;
+	margin: 10px;
+	border: 1px dotted #5CA605;
 }
+
+#bd {
+	padding: 10px;
+}
+
+#ft {
+	text-align: right;
+}
+
+
